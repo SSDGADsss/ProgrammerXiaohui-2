@@ -1,5 +1,6 @@
 package chapter2.part3;
 
+import java.sql.Blob;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -195,7 +196,7 @@ public class RedBlackTree {
                     }
                 }
                 //子情况5，node的父结点随意，兄弟结点是黑色右孩子，左侄子结点是红色，右侄子结点是黑色：
-                if (sibling.left == null || sibling.color == RED) {
+                if ((sibling.left != null && sibling.left.color==RED) && (sibling.right==null || sibling.right.color==BLACK) ) {
                     sibling.left.color = BLACK;
                     sibling.color = RED;
                     rightRotate(sibling);
@@ -232,7 +233,7 @@ public class RedBlackTree {
                     }
                 }
                 //子情况5（镜像），node的父结点随意，兄弟结点是黑色左孩子，右侄子结点是红色，左侄子结点是黑色：
-                if (sibling.right == null || sibling.right.color == RED) {
+                if ((sibling.right != null && sibling.right.color==RED) && (sibling.left==null || sibling.left.color==BLACK) ) {
                     sibling.right.color = BLACK;
                     sibling.color = RED;
                     leftRotate(sibling);
@@ -342,11 +343,10 @@ public class RedBlackTree {
 
     public static void main(String[] args) {
         RedBlackTree rbTree = new RedBlackTree();
-        int input[]= {13,8,17,1,11,15,25,6,22,27};
-        for(int i=0; i<input.length; i++) {
-            rbTree.insert(input[i]);
+        for(int i=0; i<10; i++) {
+            rbTree.insert(i);
         }
-        rbTree.remove(8);
+        rbTree.remove(5);
         System.out.println("中序遍历: ");
         inOrderTraversal(rbTree.root);
         System.out.println();
