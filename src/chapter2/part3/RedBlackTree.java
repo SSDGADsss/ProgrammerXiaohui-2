@@ -181,7 +181,9 @@ public class RedBlackTree {
                     leftRotate(parent);
                     sibling = parent.right;
                 }
-                if (sibling == null || ((sibling.left == null || sibling.left.color == BLACK) && (sibling.right == null || sibling.right.color == BLACK))) {
+                if(sibling==null)
+                    break;
+                if (((sibling.left == null || sibling.left.color == BLACK) && (sibling.right == null || sibling.right.color == BLACK))) {
                     //子情况2（镜像），node的父结点是黑色，兄弟和侄子结点是黑色：
                     if(parent.color == BLACK){
                         sibling.color = RED;
@@ -218,7 +220,9 @@ public class RedBlackTree {
                     rightRotate(parent);
                     sibling = parent.left;
                 }
-                if (sibling == null || ((sibling.left == null || sibling.left.color == BLACK) && (sibling.right == null || sibling.right.color == BLACK))) {
+                if(sibling==null)
+                    break;
+                if (((sibling.left == null || sibling.left.color == BLACK) && (sibling.right == null || sibling.right.color == BLACK))) {
                     //子情况2（镜像），node的父结点是黑色，兄弟和侄子结点是黑色：
                     if(parent.color == BLACK){
                         sibling.color = RED;
